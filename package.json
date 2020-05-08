@@ -7,9 +7,9 @@
     "db:seed": "knex seed:run",
     "start": "node index.js",
     "server": "nodemon index.js",
-    "projects": "npm start --prefix projects",
+    "client": "npm start --prefix client projects",
     "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
+  }, 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LambdaSchool/node-api-challenge.git"

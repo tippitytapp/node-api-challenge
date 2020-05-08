@@ -74,6 +74,7 @@ router.put('/:id', checkID, checkProjectBody, (req, res) => {
 })
 
 router.delete('/:id', checkID, (req, res)=> {
+    console.log("req.body");
     Projects.remove(req.params.id)
     .then(resp => {
         if(resp === 1){

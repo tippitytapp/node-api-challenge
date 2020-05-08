@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import axios from "axios";
 import {useHistory, useParams} from "react-router-dom"
@@ -8,7 +6,7 @@ function Project(props){
     const history=useHistory();
     const deleteProject = (event, id) =>{
         axios.delete(`http://localhost:4534/api/projects/${props.project.id}`)
-        .then(res => {console.log(res); history.push('/projects')})
+        .then(res => {console.log(res); history.push('/projects'); history.go(0);})
         .catch(err => {console.log(err)})
     }
     console.log(props.project.id)

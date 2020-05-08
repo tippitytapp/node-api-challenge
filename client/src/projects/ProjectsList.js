@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import {useHistory} from "react-router-dom"
+import {useHistory, Link} from "react-router-dom";
+import Project from "./ProjectCard"
 
 function ProjectsList(){
 const [projects, setProjects] = useState([])
@@ -16,11 +17,7 @@ const history = useHistory()
         })
     },[])
 
-    const deleteProject = (event, id) =>{
-        axios.delete(`http://localhost:4534/api/projects/${id}`)
-        .then(res => {console.log(res); history.push('/projects')})
-        .catch(err => {console.log(err)})
-    }
+
 
 
 
@@ -34,9 +31,8 @@ return(
     console.log(item.id)
     return(
         <div className="projects">
-        <h2>{item.name}</h2>
-        <h3>{item.description}</h3>
-        <button onClick={(e)=>{e.preventDefault();deleteProject(item.id)}}>Delete</button>
+        <Link key={item.id} to={`/projects/${item.id}`}><h2>{item.name}</h2><Project project={item}/></Link>
+
         </div>
     )
 })}

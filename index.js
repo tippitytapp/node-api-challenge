@@ -16,13 +16,14 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
+const cors = require('cors');
 dotenv.config({path: './config/config.env'});
 const ProjectsRouter = require('./routers/projects-router.js');
 const ActionsRouter = require('./routers/actions-router.js');
 const server = express();
 server.use(express.json());
 const PORT = process.env.PORT;
-
+server.use(cors());
 if(process.env.NODE_ENV === 'development'){
     server.use(morgan('dev'))
 }

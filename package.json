@@ -7,7 +7,7 @@
     "db:seed": "knex seed:run",
     "start": "node index.js",
     "server": "nodemon index.js",
-    "client": "npm start --prefix client projects",
+    "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   }, 
   "repository": {

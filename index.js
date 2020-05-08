@@ -16,7 +16,9 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
-dotenv.config({path: './config/config.env'})
+dotenv.config({path: './config/config.env'});
+const ProjectsRouter = require('./routers/projects-router.js');
+const ActionsRouter = require('./routers/actions-router.js');
 const server = express();
 server.use(express.json());
 const PORT = process.env.PORT;
@@ -25,6 +27,7 @@ if(process.env.NODE_ENV === 'development'){
     server.use(morgan('dev'))
 }
 
+
 server.get('/', (req, res) => {
     res.status(200).json({
         message: "You have successfully connected to my the sprint api"
@@ -32,4 +35,7 @@ server.get('/', (req, res) => {
 })
 
 
+
 server.listen(PORT, console.log(`Server is running in ${process.env.NODE_ENV} mode on http://localhost:${PORT}`.magenta.underline.bold))
+
+server.use('/api/projects', ProjectsRouter);

@@ -12,3 +12,24 @@ I need this code, but don't know where, perhaps should make some middleware, don
 
 Go code!
 */
+const express = require('express');
+const dotenv = require('dotenv');
+const colors = require('colors');
+const morgan = require('morgan');
+dotenv.config({path: './config/config.env'})
+const server = express();
+server.use(express.json());
+const PORT = process.env.PORT;
+
+if(process.env.NODE_ENV === 'development'){
+    server.use(morgan('dev'))
+}
+
+server.get('/', (req, res) => {
+    res.status(200).json({
+        message: "You have successfully connected to my the sprint api"
+    })
+})
+
+
+server.listen(PORT, console.log(`Server is running in ${process.env.NODE_ENV} mode on http://localhost:${PORT}`.magenta.underline.bold))
